@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pizzaria do Vito — Bairro Jardim das Flores</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#1B1210;
+    --dough:#F6EEE0;
+    --dough-deep:#EDE1CC;
+    --brick:#B23A1E;
+    --olive:#5C6B34;
+    --gold:#E3A23B;
+    --ink:#2A211C;
+    --line: rgba(27,18,16,0.16);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--dough);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--charcoal);
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+
+  /* NAV */
+  header.site{
+    background:var(--charcoal);
+    color:var(--dough);
+    position:sticky; top:0; z-index:50;
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    max-width:1080px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-size:1.3rem;
+    font-weight:600;
+    color:var(--dough);
+    text-decoration:none;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .brand .dot{color:var(--gold); font-size:1.4rem; line-height:0;}
+  nav.links{display:flex; gap:36px;}
+  nav.links a{
+    text-decoration:none;
+    font-size:0.94rem;
+    color:var(--dough);
+    opacity:0.82;
+    padding-bottom:2px;
+    border-bottom:1px solid transparent;
+    transition:opacity .2s, border-color .2s;
+  }
+  nav.links a:hover{opacity:1; border-color:var(--gold);}
+  .nav-cta{
+    background:var(--gold);
+    color:var(--charcoal);
+    text-decoration:none;
+    padding:9px 18px;
+    font-size:0.9rem;
+    font-weight:600;
+    border-radius:2px;
+  }
+  @media (max-width:760px){
+    nav.links{display:none;}
+  }
+
+  /* HERO */
+  .hero{
+    background:var(--charcoal);
+    color:var(--dough);
+    padding:64px 0 0 0;
+    overflow:hidden;
+  }
+  .hero-inner{
+    max-width:1080px; margin:0 auto; padding:0 32px;
+    display:grid; grid-template-columns:1.1fr 0.9fr;
+    align-items:center;
+    gap:24px;
+  }
+  .hero-eyebrow{
+    color:var(--gold);
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.05rem;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:3.4rem;
+    line-height:1.03;
+    color:var(--dough);
+    max-width:9.5em;
+  }
+  .hero p.lede{
+    margin-top:22px;
+    max-width:34ch;
+    font-size:1.08rem;
+    color:rgba(246,238,224,0.78);
+  }
+  .hero-actions{
+    margin-top:34px;
+    display:flex; gap:16px; flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--brick);
+    color:var(--dough);
+    text-decoration:none;
+    padding:14px 26px;
+    font-size:0.98rem;
+    font-weight:600;
+    border-radius:2px;
+    display:inline-block;
+    transition:background .2s;
+  }
+  .btn-primary:hover{background:#93300f;}
+  .btn-ghost{
+    border:1px solid rgba(246,238,224,0.4);
+    color:var(--dough);
+    text-decoration:none;
+    padding:13px 26px;
+    font-size:0.98rem;
+    border-radius:2px;
+    display:inline-block;
+    transition:border-color .2s, background .2s;
+  }
+  .btn-ghost:hover{border-color:var(--gold); background:rgba(227,162,59,0.08);}
+
+  .pizza-art{ position:relative; }
+  .pizza-art svg{
+    width:100%; height:auto;
+    animation: settle 900ms cubic-bezier(.2,.8,.2,1) 1;
+  }
+  @keyframes settle{
+    from{ transform: rotate(-8deg) scale(0.9); opacity:0;}
+    to{ transform: rotate(0deg) scale(1); opacity:1;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .pizza-art svg{animation:none;}
+  }
+
+  .hero-strip{
+    margin-top:52px;
+    border-top:1px solid rgba(246,238,224,0.16);
+    padding:20px 0;
+  }
+  .hero-strip .wrap{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:0.86rem; color:rgba(246,238,224,0.62);
+  }
+
+  @media (max-width:800px){
+    .hero-inner{grid-template-columns:1fr; text-align:left;}
+    .hero h1{font-size:2.5rem;}
+    .pizza-art{max-width:280px; margin-top:32px;}
+  }
+
+  /* SECTION HEADERS */
+  .section{padding:88px 0;}
+  .section-head{
+    display:grid; grid-template-columns:1fr 1.6fr;
+    gap:40px;
+    margin-bottom:48px;
+    align-items:end;
+  }
+  .section-head h2{font-size:2.1rem;}
+  .section-head p{color:#5b5048; max-width:44ch; font-size:1rem;}
+  @media (max-width:760px){
+    .section-head{grid-template-columns:1fr;}
+  }
+
+  /* SOBRE */
+  .sobre{background:var(--dough-deep);}
+  .sobre-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;
+  }
+  .sobre-grid p{margin-bottom:16px; font-size:1.02rem; color:#3a322c;}
+  blockquote{
+    border-left:3px solid var(--olive);
+    padding:4px 0 4px 22px;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.3rem;
+    color:var(--charcoal);
+    line-height:1.5;
+  }
+  blockquote cite{
+    display:block; margin-top:12px;
+    font-family:'Work Sans', sans-serif; font-style:normal;
+    font-size:0.85rem; color:#6b6055;
+  }
+  @media (max-width:760px){
+    .sobre-grid{grid-template-columns:1fr;}
+  }
+
+  /* CARDAPIO */
+  .cardapio-cat{margin-bottom:44px;}
+  .cardapio-cat:last-child{margin-bottom:0;}
+  .cardapio-cat h3{
+    font-size:1.3rem;
+    color:var(--brick);
+    margin-bottom:6px;
+  }
+  .cardapio-cat .cat-note{
+    font-size:0.9rem; color:#786b5f; margin-bottom:18px;
+  }
+  .menu-item{
+    display:flex; align-items:baseline; gap:10px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .menu-item:last-child{border-bottom:none;}
+  .menu-item .name{
+    font-weight:500; color:var(--ink); white-space:nowrap;
+  }
+  .menu-item .desc{
+    color:#736656; font-size:0.9rem; margin-top:2px;
+  }
+  .menu-item .leader{
+    flex:1;
+    border-bottom:1px dotted #b8a98f;
+    margin:0 8px 5px;
+    min-width:20px;
+  }
+  .menu-item .price{
+    font-family:'Fraunces', serif; font-weight:600;
+    color:var(--charcoal); white-space:nowrap; font-size:1.02rem;
+  }
+  .item-text{flex:none; display:flex; flex-direction:column;}
+  @media (max-width:600px){
+    .menu-item{align-items:flex-start; flex-wrap:wrap;}
+  }
+
+  /* FAIXA OLIVA */
+  .cta-band{
+    background:var(--olive);
+    color:var(--dough);
+    padding:72px 0;
+  }
+  .cta-band .wrap{
+    display:grid; grid-template-columns:1.3fr 1fr; gap:40px; align-items:center;
+  }
+  .cta-band h2{color:var(--dough); font-size:2rem;}
+  .cta-band p{color:rgba(246,238,224,0.82); margin-top:14px; max-width:40ch;}
+  .cta-band .btn-primary{background:var(--charcoal);}
+  .cta-band .btn-primary:hover{background:#000;}
+  @media (max-width:760px){
+    .cta-band .wrap{grid-template-columns:1fr;}
+  }
+
+  /* LOCALIZACAO */
+  .local-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:56px;
+  }
+  .info-block{margin-bottom:28px;}
+  .info-block h4{
+    font-family:'Work Sans', sans-serif; font-weight:600;
+    font-size:0.82rem; color:var(--brick);
+    margin-bottom:8px;
+  }
+  .info-block p{color:#3a322c;}
+  .hours-row{
+    display:flex; justify-content:space-between;
+    padding:8px 0; border-bottom:1px solid var(--line);
+    font-size:0.94rem;
+  }
+  .hours-row:last-child{border-bottom:none;}
+  .map-plate{
+    background:var(--charcoal);
+    border-radius:2px;
+    min-height:280px;
+    display:flex; align-items:center; justify-content:center;
+    color:rgba(246,238,224,0.5);
+    font-size:0.9rem;
+    padding:24px;
+    text-align:center;
+  }
+  @media (max-width:760px){
+    .local-grid{grid-template-columns:1fr;}
+  }
+
+  footer{
+    background:var(--charcoal);
+    color:rgba(246,238,224,0.55);
+    padding:36px 0;
+    font-size:0.85rem;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  }
+  footer strong{color:var(--dough);}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <a href="#" class="brand"><span class="dot">●</span>Pizzaria do Vito</a>
+    <nav class="links">
+      <a href="#sobre">A casa</a>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#local">Onde estamos</a>
+    </nav>
+    <a class="nav-cta" href="https://wa.me/5511999999999" target="_blank" rel="noopener">Pedir no Whats</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Forno a lenha desde a primeira fornada</div>
+      <h1>A pizza que fecha a noite do bairro.</h1>
+      <p class="lede">Massa de fermentação lenta, borda que estala e entrega quente até a sua porta, no Jardim das Flores e arredores.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://wa.me/5511999999999" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        <a class="btn-ghost" href="#cardapio">Ver cardápio</a>
+      </div>
+    </div>
+    <div class="pizza-art">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="170" fill="#E3A23B"/>
+        <circle cx="200" cy="200" r="170" fill="none" stroke="#C97F2B" stroke-width="10"/>
+        <circle cx="200" cy="200" r="148" fill="#F6EEE0"/>
+        <circle cx="200" cy="200" r="148" fill="#B23A1E" opacity="0.88"/>
+        <circle cx="200" cy="200" r="138" fill="#F6EEE0" opacity="0.5"/>
+        <g fill="#E3A23B" opacity="0.95">
+          <circle cx="150" cy="150" r="20"/>
+          <circle cx="250" cy="140" r="17"/>
+          <circle cx="200" cy="210" r="19"/>
+          <circle cx="140" cy="240" r="16"/>
+          <circle cx="260" cy="250" r="18"/>
+          <circle cx="200" cy="300" r="15"/>
+          <circle cx="120" cy="190" r="14"/>
+        </g>
+        <g fill="#5C6B34">
+          <ellipse cx="175" cy="175" rx="7" ry="4" transform="rotate(20 175 175)"/>
+          <ellipse cx="235" cy="165" rx="7" ry="4" transform="rotate(-15 235 165)"/>
+          <ellipse cx="205" cy="235" rx="7" ry="4" transform="rotate(40 205 235)"/>
+          <ellipse cx="160" cy="270" rx="7" ry="4" transform="rotate(-25 160 270)"/>
+          <ellipse cx="270" cy="220" rx="7" ry="4" transform="rotate(10 270 220)"/>
+          <ellipse cx="150" cy="220" rx="7" ry="4" transform="rotate(60 150 220)"/>
+        </g>
+        <path d="M200 30 L204 60 L196 60 Z" fill="#F6EEE0" opacity="0.15"/>
+      </svg>
+    </div>
+  </div>
+  <div class="hero-strip">
+    <div class="wrap">
+      <span>Terça a domingo, 18h às 23h30</span>
+      <span>Rua das Palmeiras, 214 — Jardim das Flores</span>
+      <span>Delivery próprio em raio de 4 km</span>
+    </div>
+  </div>
+</section>
+
+<section class="section sobre" id="sobre">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>A casa</h2>
+      <p>Uma pizzaria de família, do jeito que o bairro gosta: sem pressa na massa e sem enrolação na entrega.</p>
+    </div>
+    <div class="sobre-grid">
+      <div>
+        <p>O Vito abriu o forno em 2011, numa esquina que era só um bar de portas fechadas. Hoje a fila de pedidos no fim de tarde é um sinal de que a rua acordou pra noite.</p>
+        <p>A massa descansa 48 horas antes de virar pizza. É isso que dá a leveza da borda e o gosto que não pesa no estômago, mesmo depois da segunda fatia.</p>
+        <p>Quem atende o telefone conhece o nome de quem pede. Quem sobe as escadas do prédio com a caixa quente é quase sempre o próprio Vito ou um dos filhos.</p>
+      </div>
+      <blockquote>
+        Pizza boa não é sobre esticar a massa fina. É sobre não ter pressa nenhuma com ela.
+        <cite>— Vito, à frente do forno desde o primeiro dia</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cardapio">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Cardápio</h2>
+      <p>Tamanho único, 35 cm, generosa o bastante pra duas pessoas. Borda recheada com catupiry por R$ 8 a mais em qualquer sabor.</p>
+    </div>
+
+    <div class="cardapio-cat">
+      <h3>Tradicionais</h3>
+      <p class="cat-note">As que nunca saem do time titular.</p>
+      <div class="menu-item">
+        <div class="item-text"><span class="name">Marguerita</span><span class="desc">Molho de tomate, mussarela de búfala, manjericão fresco</span></div>
+        <span class="leader"></span><span class="price">R$ 48</span>
+      </div>
+      <div class="menu-item">
+        <div class="item-text"><span class="name">Calabresa acebolada</span><span class="desc">Calabresa artesanal fatiada na hora, cebola roxa</span></div>
+        <span class="leader"></span><span class="price">R$ 46</span>
+      </div>
+      <div class="menu-item">
+        <div class="item-text"><span class="name">Quatro queijos</span><span class="desc">Mussarela, provolone, gorgonzola, parmesão</span></div>
+        <span class="leader"></span><span class="price">R$ 52</span>
+      </div>
+      <div class="menu-item">
+        <div class="item-text"><span class="name">Portuguesa</span><span class="desc">Presunto, ovos, cebola, azeitona, ervilha</span></div>
+        <span class="leader"></span><span class="price">R$ 49</span>
+      </div>
+    </div>
+
+    <div class="cardapio-cat">
+      <h3>Especiais da casa</h3>
+      <p class="cat-note">Receitas que o Vito só deixa os filhos mexerem.</p>
+      <div class="menu-item">
+        <div class="item-text"><span class="name">Figo com gorgonzola</span><span class="desc">Figo caramelizado, gorgonzola, mel, nozes</span></div>
+        <span class="leader"></span><span class="price">R$ 58</span>
+      </div>
+      <div class="menu-item">
+        <div class="item-text"><span class="name">Short rib desfiado</span><span class="desc">Costela de 12 horas, cebola caramelizada, provolone</span></div>
+        <span class="leader"></span><span class="price">R$ 64</span>
+      </div>
+    </div>
+
+    <div class="cardapio-cat">
+      <h3>Doces</h3>
+      <p class="cat-note">Pra fechar a mesa.</p>
+      <div class="menu-item">
+        <div class="item-text"><span class="name">Chocolate com morango</span><span class="desc">Chocolate meio amargo, morangos frescos</span></div>
+        <span class="leader"></span><span class="price">R$ 46</span>
+      </div>
+      <div class="menu-item">
+        <div class="item-text"><span class="name">Banana com canela</span><span class="desc">Banana caramelizada, canela, leite condensado</span></div>
+        <span class="leader"></span><span class="price">R$ 42</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div>
+      <h2>O forno já está aceso.</h2>
+      <p>Manda a mensagem, escolhe o sabor e a gente cuida do resto — a caixa chega quente.</p>
+    </div>
+    <div>
+      <a class="btn-primary" href="https://wa.me/5511999999999" target="_blank" rel="noopener">Pedir agora no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="local">
+  <div class="wrap">
+    <div class="local-grid">
+      <div>
+        <div class="info-block">
+          <h4>Endereço</h4>
+          <p>Rua das Palmeiras, 214<br>Jardim das Flores — Sumaré, SP</p>
+        </div>
+        <div class="info-block">
+          <h4>Horário</h4>
+          <div class="hours-row"><span>Terça a sexta</span><span>18h — 23h</span></div>
+          <div class="hours-row"><span>Sábado e domingo</span><span>18h — 23h30</span></div>
+          <div class="hours-row"><span>Segunda-feira</span><span>fechado</span></div>
+        </div>
+        <div class="info-block">
+          <h4>Contato</h4>
+          <p>(11) 99999-9999<br>@pizzariadovito</p>
+        </div>
+      </div>
+      <div class="map-plate">
+        Mapa incorporado aqui<br>(Google Maps do endereço real)
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span><strong>Pizzaria do Vito</strong> — Jardim das Flores, Sumaré</span>
+    <span>Site modelo criado para fins de portfólio</span>
+  </div>
+</footer>
+
+</body>
+</html>
